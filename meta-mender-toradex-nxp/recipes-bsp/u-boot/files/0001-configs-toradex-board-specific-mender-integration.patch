@@ -1,26 +1,20 @@
-diff --git a/configs/apalis-imx8_defconfig b/configs/apalis-imx8_defconfig
-index 4334afee64..2bfa38d58e 100644
---- a/configs/apalis-imx8_defconfig
-+++ b/configs/apalis-imx8_defconfig
-@@ -71,3 +71,6 @@ CONFIG_VIDEO=y
- CONFIG_VIDEO_IMX_HDP_LOAD=y
- CONFIG_OF_LIBFDT_OVERLAY=y
- # CONFIG_EFI_LOADER is not set
-+CONFIG_ENV_OFFSET=0x800000
-+CONFIG_ENV_OFFSET_REDUND=0x1000000
-+CONFIG_SYS_REDUNDAND_ENVIRONMENT=y
 diff --git a/include/configs/apalis-imx8.h b/include/configs/apalis-imx8.h
-index 2ff591a822..edbbc1c244 100644
+index 2ff591a822..9843d65a65 100644
 --- a/include/configs/apalis-imx8.h
 +++ b/include/configs/apalis-imx8.h
-@@ -149,10 +149,6 @@
+@@ -148,11 +148,10 @@
+ #define CONFIG_SYS_MEMTEST_END		0x89000000
  
  /* Environment in eMMC, before config block at the end of 1st "boot sector" */
- #define CONFIG_ENV_SIZE			0x2000
+-#define CONFIG_ENV_SIZE			0x2000
 -#define CONFIG_ENV_OFFSET		(-CONFIG_ENV_SIZE + \
 -					 CONFIG_TDX_CFG_BLOCK_OFFSET)
 -#define CONFIG_SYS_MMC_ENV_DEV		0
 -#define CONFIG_SYS_MMC_ENV_PART		1
++#define CONFIG_ENV_SIZE			 0x2000
++#define CONFIG_ENV_OFFSET		 0x800000
++#define CONFIG_ENV_OFFSET_REDUND	 0x1000000
++#define CONFIG_SYS_REDUNDAND_ENVIRONMENT 1
  
  #define CONFIG_SYS_MMC_IMG_LOAD_PART	1
  
