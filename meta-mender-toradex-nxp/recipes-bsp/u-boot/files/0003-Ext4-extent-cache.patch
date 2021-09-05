@@ -346,10 +346,23 @@ index 9ee2caf2fa..fdf151e321 100644
 +	return 1;
 +}
 diff --git a/include/ext4fs.h b/include/ext4fs.h
-index bb55639107..c8a9490b3d 100644
+index bb55639107..bed4bee80c 100644
 --- a/include/ext4fs.h
 +++ b/include/ext4fs.h
-@@ -145,11 +145,15 @@ int ext4fs_size(const char *filename, loff_t *size);
+@@ -116,6 +116,12 @@ struct ext_filesystem {
+ 	struct blk_desc *dev_desc;
+ };
+ 
++struct ext_block_cache {
++	char *buf;
++	lbaint_t block;
++	int size;
++};
++
+ extern struct ext2_data *ext4fs_root;
+ extern struct ext2fs_node *ext4fs_file;
+ 
+@@ -145,11 +151,15 @@ int ext4fs_size(const char *filename, loff_t *size);
  void ext4fs_free_node(struct ext2fs_node *node, struct ext2fs_node *currroot);
  int ext4fs_devread(lbaint_t sector, int byte_offset, int byte_len, char *buf);
  void ext4fs_set_blk_dev(struct blk_desc *rbdd, disk_partition_t *info);
